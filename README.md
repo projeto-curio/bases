@@ -5,6 +5,8 @@ Qualquer um poderá fazer queries, a qualquer momento, em qualquer uma das bases
 
 Qualquer ideia de cruzamento de bases, de qualquer tamanho, será executável com uma simples consulta de SQL. Sem precisar procurar, baixar, tratar, comprar um servidor e subir clusters.
 
+O projeto incentiva que outras instituições e pessoas contribuam. Só é requerido que o processo de captura de tratamento sejam públicos e documentados.
+
 # Como organizar as bases no BigQuery?
 
 As bases tem que ser organizadas no BigQuery de maneira consistente, que permita uma busca fácil e intuitiva, e seja escalável.
@@ -143,6 +145,10 @@ labels:
 ### <nome_tabela>.yaml
 
 ```yaml
+owner: 
+    name: Curio # Ou qualquer outra instituição/ pessoa
+    contact: curio-issues
+code: <code-that-generated-table-url>
 name: candidatos
 description: |
     Candidatos das eleições federais e municipais de 2010 até 2020
