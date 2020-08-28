@@ -133,8 +133,10 @@ A pasta `bases/` terá uma estrutura similar a do BigQuery.
     ├── bases
         ├── <nome_schema>             Ex: br-eleicoes-tse
         ├── ...
+            ├── code/                 Todo código relacionado ao schema
             ├── <schema_config.yaml>
             ├── <nome_tabela>.yaml    Ex: candidatos.yaml
+            ├── ...
 ```
 
 Os arquivos `.yaml` serão usados para documentação e configuração das tabelas e schemas.
