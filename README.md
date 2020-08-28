@@ -7,6 +7,15 @@ Qualquer ideia de cruzamento de bases, de qualquer tamanho, será executável co
 
 O projeto incentiva que outras instituições e pessoas contribuam. Só é requerido que o processo de captura de tratamento sejam públicos e documentados.
 
+**Porque o Bigquery?**
+
+Sabemos que estruturar os dados em uma plataforma privada não é o ideal para um projeto de dados abertos. Porém o Bigquery oferece uma infraestrutura com algumas vantagens:
+
+- É possível deixar os dados públicos. I.e. qualquer um com uma conta no Google Cloud pode fazer uma query a qualquer momento na base
+- O usuário (quem faz a query) paga por ela. Isso deixa os custos do projeto bem baixos
+- O BigQuery escala magicamente para hexabytes se necessário
+- O custo é relativamente baixo para os usuários. São cobrados 5 dólares por terabyte de dados que sua query percorrer, e os primeiros 5 terabytes são gratuitos. Portanto, deixando o uso praticamente zero para a maioria dos usuários.
+
 # Como organizar as bases no BigQuery?
 
 As bases tem que ser organizadas no BigQuery de maneira consistente, que permita uma busca fácil e intuitiva, e seja escalável.
