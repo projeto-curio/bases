@@ -26,9 +26,9 @@ O BigQuery permite dois níveis: schema e table. E também tem uma ferramenta de
 |           | Schema                      | Tabela                           |
 |-----------|-----------------------------|----------------------------------|
 | Mundial   | mundo-\<tema\>-\<instituicao\>      | \<descrição\>                        |
-| Federal   | \<pais\>-tema\>-instituicao\>       | \<descrição\>                       |
-| Estadual  | \<pais\>-estado\>                 | \<instituicao\>-\<tema\>-descrição\>       |
-| Municipal | \<pais\>-estado\>-cidade\>          | \<instituicao\>-\<tema\>-descrição\>       |
+| Federal   | \<pais\>-\<tema\>-instituicao\>       | \<descrição\>                       |
+| Estadual  | \<pais\>-\<estado\>                 | \<instituicao\>-\<tema\>-descrição\>       |
+| Municipal | \<pais\>-\<estado\>-cidade\>          | \<instituicao\>-\<tema\>-descrição\>       |
 
 
 ## Mundial -- Clima, Waze
