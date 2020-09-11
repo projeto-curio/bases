@@ -1,27 +1,30 @@
-# Curió Bases
+# Curió Bases 🗂️
 
-A ideia do projeto é organizar os dados brasileiros em tabelas públicas no BigQuery.
-Qualquer um poderá fazer queries, a qualquer momento, em qualquer uma das bases tratadas e documentadas.
+O intuito do projeto é organizar e facilitar o acesso a dados brasileiros através de tabelas públicas no BigQuery.
+Qualquer pessoa poderá fazer queries em bases tratadas e documentadas que estarão disponíveis e estáveis.
 
-Qualquer ideia de cruzamento de bases, de qualquer tamanho, será executável com uma simples consulta de SQL. Sem precisar procurar, baixar, tratar, comprar um servidor e subir clusters.
+Uma simples consulta de SQL será o suficiente para cruzamento de bases que você desejar. Sem precisar procurar, baixar, tratar, comprar um servidor e subir clusters.
 
-O projeto incentiva que outras instituições e pessoas contribuam. Só é requerido que o processo de captura de tratamento sejam públicos e documentados.
+**Incentivamos que outras instituições e pessoas contribuam**. Só é requerido que o processo de captura e tratamento sejam públicos e documentados, e a inserção dos dados no BigQuery siga nossa metodologia descrita abaixo.
 
-**Porque o Bigquery?**
+#### Porque o BigQuery?
 
-Sabemos que estruturar os dados em uma plataforma privada não é o ideal para um projeto de dados abertos. Porém o Bigquery oferece uma infraestrutura com algumas vantagens:
+Sabemos que estruturar os dados em uma plataforma privada não é o ideal para um projeto de dados abertos. Porém o BigQuery oferece uma infraestrutura com algumas vantagens:
 
-- É possível deixar os dados públicos. I.e. qualquer um com uma conta no Google Cloud pode fazer uma query a qualquer momento na base
+- É possível deixar os dados públicos, i.e., qualquer pessoa com uma conta no Google Cloud pode fazer uma query na base, quando quiser
 - O usuário (quem faz a query) paga por ela. Isso deixa os custos do projeto bem baixos
 - O BigQuery escala magicamente para hexabytes se necessário
-- O custo é relativamente baixo para os usuários. São cobrados 5 dólares por terabyte de dados que sua query percorrer, e os primeiros 5 terabytes são gratuitos. Portanto, deixando o uso praticamente zero para a maioria dos usuários.
+- O custo é praticamente zero para usuários. São cobrados somente 5 dólares por terabyte de dados que sua query percorrer, e os primeiros 5 terabytes são gratuitos.
 
 # Como organizar as bases no BigQuery?
 
 As bases tem que ser organizadas no BigQuery de maneira consistente, que permita uma busca fácil e intuitiva, e seja escalável.
 
-O BigQuery permite dois níveis: schema e table. E também tem uma ferramenta de busca. 
+Para isso, existem dois níveis de organização: _schemas_ e _tables_, nos quais:
+- Todas as tabelas devem estar organizadas em _schemas_
+- Cada tabela deve pertencer a um único _schema_
 
+As diretrizes para nomenclatura dos _schemas_ e tabelas são descritas abaixo:
 
 |           | Schema                      | Tabela                           |
 |-----------|-----------------------------|----------------------------------|
@@ -30,12 +33,14 @@ O BigQuery permite dois níveis: schema e table. E também tem uma ferramenta de
 | Estadual  | \<pais\>-\<estado\>                 | \<instituicao\>-\<tema\>-descrição\>       |
 | Municipal | \<pais\>-\<estado\>-\<cidade\>          | \<instituicao\>-\<tema\>-descrição\>       |
 
+- Utilizar somente letras minúsculas
+- Remover acentos, pontuações e espaços
 
 ## Mundial -- Clima, Waze
 
 ### Schema:
 
-Usar abrangencia, um tema e nome da instituição
+Usar abrangência, um tema e nome da instituição
 
 `mundo-<tema>-<instituicao>`
 
@@ -51,7 +56,7 @@ Exemplo: Os dados de alertas do Waze estariam no schema `mundo-mobilidade-waze` 
 
 ### Schema:
 
-Usar país, um tema e nome da instituição
+Usar sigla do país, um tema e nome da instituição
 
 `<pais>-<tema>-<instituicao>`
 
@@ -67,7 +72,7 @@ Exemplo: Os dados de candidatos do TSE estariam no schema `br-eleicoes-tse` e na
 
 ### Schema:
 
-Usar país, estado.
+Usar país e sigla do estado (UF).
 
 `<pais>-<estado>`
 
@@ -84,7 +89,7 @@ Exemplo: Os dados da rede de esgoto da SANASA que atende no estado de São Paulo
 
 ### Schema:
 
-Usar país, estado, nome da cidade
+Usar sigla do país, sigla do estado (UF), nome da cidade (sem espaço)
 
 `<pais>-<estado>-<cidade>`
 
@@ -181,9 +186,9 @@ columns:
         treated?: False # A coluna foi modificada (exceto mudançã de tipos)?
 ```
 
-# Estrutuação no Storage
+# Estruturação no Storage
 
-A estrutura deve seguir a sendo a mesma do Bigquery. Mas, existem duas pastas na raiz do bucket `raw` e `treated` que tem a mesma estrutura:
+A estrutura deve seguir a mesma lógica do BigQuery. Porém, existem pastas raízes diferentes: os dados brutos devem ser alocados em `raw` e tratados em `treated`. Ambas possuem a mesma estrutura:
 
 ```
     ├── treated/raw
